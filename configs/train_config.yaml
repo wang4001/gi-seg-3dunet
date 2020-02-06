@@ -1,0 +1,55 @@
+---
+# path to save/load checkpoint
+checkpoint_dir: ./unet3d_v3_aug_p2
+# flag to decide to start from the begining or consume from one checkpoint
+consume: False
+# number of input channels
+in_channels: 1
+# number of output channels
+out_channels: 3
+# number of feature channels in the initial conv layer
+init_channels: 64
+# way to upsample the feature maps
+interpolate: False
+# type of loss function: dice-dice, gdc-generalized dice
+loss: dice
+# manual rescaling weights for different classes
+loss_weight: False
+# max number of epochs
+epochs: 100
+# number of validation rounds with no improvement, after which the training will be stopped
+patience: 20
+# initial learning rate
+learning_rate: 0.00005
+# weight decay rate
+weight_decay: 0.0001
+# number of iterations between validation
+validate_after_iters: 261
+# path to training dataset
+data_path: ./data/animal/volume/train_data_v2.h5
+# subject index for training in the dataset
+train_sub_index: ['01','03','04','05','06','07','08','09','10','11','12','14','15',
+'16','17','18','19','20','21','22','23','24','25','26','27','29','30','31','32','33',
+'35','36','37','38','39','41','42','43','44','45','46','47','48','49','50','51','53',
+'54']
+# subject index for validation in the dataset
+val_sub_index: ['02','13','28','34','40','52']
+# choose the index of GPU to train the model on
+gpu_index: [2,3]
+# choose the batch size for training
+train_batch_size: 2
+# choose the batch size for validation
+val_batch_size: 2
+# choose the normalization type
+norm_type: GroupNorm 
+# flag to choose concatenation or addition
+concatenate: True
+# size of input and target
+data_size: 128
+# initialize weight
+init_weight: True
+# determine the lr decay mode: 'fixed' or 'accumulated'
+lr_decay_mode: 'accumulated'
+# determine [1] every # epoch, lr will be decayed by 1/10 for 'fixed' mode [2] if val accuracy is not increased for  # epoch (smaller than patience), lr will be decayed 1/10
+lr_decay_epoch: 10
+...
